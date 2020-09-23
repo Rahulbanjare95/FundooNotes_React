@@ -124,28 +124,32 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Confirm</InputLabel>
-          <OutlinedInput
+          <InputLabel htmlFor="outlined-adornment-password"></InputLabel>
+          <TextField
+            variant="outlined"
+            required
+            fullWidth
+            size="small"
+            name="confirm"
+            label="confirm"
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
-            endAdornment={
+            InputProps={{
+            endAdornment:(  
               <IconButton
-              
+                  size="small"
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
+                  edge="end">
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              
-            }
-            labelWidth={70}
+                </IconButton>          
+            ),
+            }}
           />
-        </FormControl>
+
             </Grid>
             <Grid item xs={12} sm={6}>
             <Button  color="primary" >Sign in instead</Button>
