@@ -47,8 +47,8 @@ export default function SignIn() {
       <Typography className={classes.head} component="h1" variant="h5">
           Fundoo
         </Typography>
-        <Typography className={classes.forget} component="p" variant="p">
-          Forget Password
+        <Typography className={classes.forget} component="p" variant="p"  helperText={"Enter email to receive reset password link "}>
+          Reset Password
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -57,22 +57,31 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="newPassword"
+            label="New Password"
+            name="newPassword"
+            autoComplete="newPassword"
             autoFocus
-            helperText={"Enter email to receive password link"}
+            helperText={"Enter a secure password"}
+          />
+          <TextField
+           size="small"
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="confirm"
+            label="Confirm"
+            name="confirm"
+            autoComplete="confirm"
           />
           <Button
-            href="./ResetPassword"
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-          >
-            Send
+          > Reset Password
           </Button>
           <Grid container>
             <Grid item xs>
