@@ -1,25 +1,19 @@
 import React from 'react';
-import styles from '../styles/register.css';
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     width: '25ch',
-  }
+  },
+  button: { textTransform: 'none' }
 
 }));
 
@@ -62,11 +57,11 @@ export default function SignUp() {
 
   return (
     <Container component="main" maxWidth="sm">
-      <Card className={classes.paper}  elevation="10">
+      <Card className={classes.pepper}  elevation="10">
       <CardContent>
       <CssBaseline />
       <div className={classes.paper}>  
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" align='left'>
           Fundoo
         </Typography>
         <Typography component="p" variant="h6">
@@ -96,7 +91,6 @@ export default function SignUp() {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
-              
               />
             </Grid>
             <Grid item xs={12}>
@@ -109,6 +103,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                helperText={"You can use letters numbers & periods"}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -120,7 +115,8 @@ export default function SignUp() {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"   
+                id="password"
+                helperText={"Use 8 or more characters with a mix of letters, numbers & symbols"}   
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -147,15 +143,18 @@ export default function SignUp() {
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>          
             ),
-            }}
+            }}           
           />
-
             </Grid>
             <Grid item xs={12} sm={6}>
-            <Button  color="primary" >Sign in instead</Button>
+            <Link href="./SignIn" variant="body2">
+            <Button variant="text" color="primary">
+              Sign in instead
+            </Button>
+              </Link>
             </Grid>
             <Grid item xs={12} sm={6}>
-            <Button variant="contained" color="primary">
+            <Button className={classes.btn} variant="contained" color="primary">
               SignUp
             </Button>
             </Grid>
