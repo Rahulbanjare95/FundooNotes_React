@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
@@ -37,6 +37,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmailAddress] = useState("");
+  const [emailError, setEmailAddressError] = useState({});
+  
+  const onSubmit = (e)=>{
+    e.preventDefault();
+    const isValid = formValidation();
+    if(isValid){
+      setEmailAddress("")
+    }
+  }
+  const formValidation = ()=>{
+    const emailError = {};
+    let isValid = true;
+    if(email.length ===0){
+        emailError.emailRequired = "Email is required";
+        isValid = false;
+    }
+    else if(!email.includes("@")){
+      emailError.emailValid = "Email not valid";
+      isValid = false;
+    }
+    setEmailAddressError(emailError);
+    return isValid;
+  }
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -50,7 +75,7 @@ export default function SignIn() {
         <Typography className={classes.forget} component="p" variant="p">
           Forget Password
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
            size="small"
             variant="outlined"
@@ -63,14 +88,19 @@ export default function SignIn() {
             autoComplete="email"
             autoFocus
             helperText={"Enter email to receive password link"}
+            onChange={(e)=>{setEmailAddress(e.target.value)}}
           />
+          {Object.keys(emailError).map((key)=>{
+              return <div style ={{color: "red"}}>{emailError[key]}</div>
+          })}
           <Button
-            href="./ResetPassword"
+            href=""
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            
           >
             Send
           </Button>
