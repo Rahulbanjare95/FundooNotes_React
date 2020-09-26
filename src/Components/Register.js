@@ -14,7 +14,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Link from '@material-ui/core/Link';
-import { useScrollTrigger } from '@material-ui/core';
+import { Formik } from "formik";
+import * as Yup from "yup";
+import Error from "./Error";
 
 const useStyles = makeStyles((theme) => ({
   top:{
@@ -40,6 +42,17 @@ const useStyles = makeStyles((theme) => ({
   button: { textTransform: 'none' }
 
 }));
+const validationSchema  = Yup.object().shape({
+  firstName: Yup.string().min(3,"Minimum 3 Characters!").required("Required!"),
+  lastName: Yup.string().min(2,"Minimum 2 Characters!").required("Required!"),
+  email: Yup.string().email().required("Required!"),
+  password: Yup.string()
+  .min(4,"Must have minimum  4 Charachters")
+  .required("Required !"),
+  confirm: Yup.string()
+  .oneOf([Yup.ref('newPassword'), null], 'Passwords must match').required('Required!')
+});
+
 
 export default function SignUp() {
   const classes = useStyles();
@@ -48,7 +61,7 @@ export default function SignUp() {
     showPassword: false,
   });
 
-  const handleChange = (prop) => (event) => {
+  const handleChangePassword = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -59,172 +72,147 @@ export default function SignUp() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const [firstName, setFirstName] = useState("");
-  const [firstNameError, setFirstNameError] = useState({});
-  const [lastName, setLastName] = useState("");
-  const [lastNameError,setLastNameError] = useState({});
-  const [email, setEmailAddress] = useState("");
-  const [emailError, setEmailAddressError] = useState({});
-  const [password,  setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState({});
-  
-  const onSubmit = (e)=>{
-    e.preventDefault();
-    const isValid = formValidation();
-    
-  }
-  const formValidation = ()=>{
-    const emailError = {};
-    const passwordError = {};
-    let isValid = true;
-    if (firstName.length === 0 ) {
-      firstNameError.firstNameRequired = "First name required";
-      isValid = false;
-    }
-    else if(lastName.length ===0){
-      lastNameError.lastNameRequired = "Last name required";
-      isValid = false;
-    }
-    else if(!email.length<1){
-        emailError.emailRequired = "Email is required";
-        isValid = false;
-    }
-    else if (!password.length>=0 ){
-      passwordError.passwordRequired = "Password Required";
-    }
-    else if(!email.includes("@")){
-      emailError.emailValid = "Email not valid";
-      isValid = false;
-    }
-    
-    else if(!password.length>8){
-        passwordError.passwordLength = "Password too Short";
-        isValid = false;
-    }
-    setFirstNameError(firstNameError);
-    setLastNameError(lastNameError);
-    setEmailAddressError(emailError);
-    setPasswordError(passwordError);
 
-    return isValid;
-  }
 
   return (
-    <Container className={classes.top}  component="main" maxWidth="sm">
-      <Card className={classes.pepper}  elevation="10">
-      <CardContent>
-      <CssBaseline />
-      <div className={classes.paper}>  
-        <Typography  component="h1" variant="h5" align='left'>
-          Fundoo
-        </Typography>
-        <Typography  component="p" variant="p">
-          Create a fundoo account
-        </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                size="small"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                onChange={(e)=>{setFirstName(e.target.value)}}
-              />
-              {Object.keys(setFirstNameError).map((key)=>{
-              return <div style ={{color: "red"}}>{setFirstNameError[key]}</div>
-          })}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                size="small"
-                id="lastName"
-                label="Last Name"
-                onChange={(e)=>{setLastName(e.target.value)}}
-              />
-              {Object.keys(setLastNameError).map((key)=>{
-              return <div style ={{color: "red"}}>{setLastNameError[key]}</div>
-          })}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                size="small"
-                id="email"
-                label="Email Address"
-                helperText={"You can use letters numbers & periods"}
-                onChange={(e)=>{setEmailAddress(e.target.value)}}
-              />
-              {Object.keys(emailError).map((key)=>{
-              return <div style ={{color: "red"}}>{emailError[key]}</div>
-          })}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <TextField
-                variant="outlined"
-                required
-                fullWidth
-                size="small" 
-                label="Password"
-                type="password"
-                id="password"
-                helperText={"Use 8 or more characters with a mix of letters, numbers & symbols"}   
-                onChange={(e)=>{setPasswordError(e.target.value)}}
-              />
-               {Object.keys(passwordError).map((key)=>{
-              return <div style ={{color: "red"}}>{passwordError[key]}</div>
-          })}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-          <InputLabel htmlFor="outlined-adornment-password"></InputLabel>
-          <TextField
-            variant="outlined"
-            required
-            fullWidth
-            size="small"
-            label="confirm"
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            InputProps={{
-            endAdornment:(  
-              <IconButton
-                  size="small"
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end">
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>          
-            ),
-            }}           
-          />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <Link href="./SignIn" variant="body2">
-            <Button variant="text" color="primary">
-              Sign in instead
-            </Button>
-              </Link>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-            <Button className={classes.btn} variant="contained" color="primary">
-              SignUp
-            </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      </CardContent>
-      </Card>
-     </Container>   );
+    <Formik initialValues = {{ firstName: "" ,lastName: "" ,email: "" ,password: "", confirm: ""}} validationSchema={validationSchema} >
+       {({ values, errors, touched, handleChange, handleBlur}) => (
+         <Container className={classes.top}  component="main" maxWidth="sm">
+         <Card className={classes.pepper}  elevation="10">
+         <CardContent>
+         <CssBaseline />
+         <div className={classes.paper}>  
+           <Typography  component="h1" variant="h5" align='left'>
+             Fundoo
+           </Typography>
+           <Typography  component="p" variant="p">
+             Create a fundoo account
+           </Typography>
+           <form className={classes.form} noValidate>
+             <Grid container spacing={2}>
+               <Grid item xs={12} sm={6}>
+                 <TextField
+                   variant="outlined"
+                   size="small"
+                   required
+                   fullWidth
+                   id="firstName"
+                   name="firstName"
+                   label="First Name"
+                   autoFocus
+                   onChange={handleChange} 
+                   value={values.firstName}
+                   onBlur={handleBlur}
+                   className={touched.firstName && errors.firstName ? "has-error"
+                  : null}
+                 />
+                 <Error touched={touched.firstName} message={errors.firstName}/>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+                 <TextField
+                   variant="outlined"
+                   required
+                   fullWidth
+                   size="small"
+                   id="lastName"
+                   name="lastName"
+                   label="Last Name"
+                   onChange={handleChange} 
+                   value={values.lastName}
+                   onBlur={handleBlur}
+                   className={touched.lastName && errors.lastName ? "has-error"
+                  : null}
+                 />
+                 <Error touched={touched.lastName} message={errors.lastName}/>
+               </Grid>
+               <Grid item xs={12}>
+                 <TextField
+                   variant="outlined"
+                   required
+                   fullWidth
+                   size="small"
+                   id="email"
+                   name="email"
+                   label="Email Address"
+                   helperText={"You can use letters numbers & periods"}
+                   onChange={handleChange} 
+                   value={values.email}
+                   onBlur={handleBlur}
+                   className={touched.email && errors.email ? "has-error"
+                  : null}
+                 />
+                 <Error touched={touched.email} message={errors.email}/>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+               <TextField
+                   variant="outlined"
+                   required
+                   fullWidth
+                   size="small" 
+                   label="Password"
+                   type="password"
+                   id="password"
+                   name="password"
+                   helperText={"Use 8 or more characters with a mix of letters, numbers & symbols"}   
+                   onChange={handleChange} 
+                   value={values.password}
+                   onBlur={handleBlur}
+                   className={touched.password && errors.password ? "has-error"
+                  : null}
+                 />
+                  <Error touched={touched.password} message={errors.password}/>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+             <InputLabel htmlFor="outlined-adornment-password"></InputLabel>
+             <TextField
+               variant="outlined"
+               required
+               fullWidth
+               size="small"
+               label="confirm"
+               id="outlined-adornment-password"
+               name="confirm"
+               type={values.showPassword ? 'text' : 'password'}
+               value={values.confirm}
+               onBlur={handleBlur}
+               onChange={handleChange}
+               onFocus={handleChangePassword}
+               className={touched.confirm && errors.confirm ? "has-error"
+               : null}
+               InputProps={{
+               endAdornment:(  
+                 <IconButton
+                     size="small"
+                     aria-label="toggle password visibility"
+                     onClick={handleClickShowPassword}
+                     onMouseDown={handleMouseDownPassword}
+                     edge="end">
+                     {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                   </IconButton>          
+               ),
+               }}           
+             />
+             <Error touched={touched.confirm} message={errors.confirm}/>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+               <Link href="./SignIn" variant="body2">
+               <Button variant="text" color="primary">
+                 Sign in instead
+               </Button>
+                 </Link>
+               </Grid>
+               <Grid item xs={12} sm={6}>
+               <Button className={classes.btn} variant="contained" color="primary">
+                 SignUp
+               </Button>
+               </Grid>
+             </Grid>
+           </form>
+         </div>
+         </CardContent>
+         </Card>
+        </Container>   
+       )}
+    </Formik>
+     );
 }
