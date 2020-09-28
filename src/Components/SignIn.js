@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,10 +50,28 @@ const validationSchema  = Yup.object().shape({
   .required("Required !").matches(/(?=.*[0-9])/, "Password must contain a number."),
   
 });
+
 export default function SignIn() {
   const classes = useStyles();
+  const [user, setUser] = useState({email : "",password : "" });
 
+  const onChangeUser = (e) =>{
+    setUser({...user, [e.target.name]: e.target.value})
+  }
   
+  const onSubmitSignIN = (e)=>{
+    e.preventDefault();
+    // console.log(user);
+    Axios.post('http://fundoonotes.incubation.bridgelabz.com/api/user/login', user)
+    .then((user)=>{
+      console.log(user);
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
+
+                                     
   return (
     <Formik initialValues={{email: "", password: ""}} validationSchema={validationSchema}>
       {({ values, errors, touched, handleChange, handleBlur}) => (
@@ -68,7 +87,7 @@ export default function SignIn() {
           Sign in
         </Typography>
         
-        <form className={classes.form}  noValidate>
+        <form className={classes.form}  noValidate onSubmit={onSubmitSignIN}>
           <TextField
            size="small"
             variant="outlined"
@@ -79,8 +98,9 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoFocus
-            value={values.email}
-            onChange={handleChange}
+            value={user.email}
+            onInput ={handleChange}
+            onChange={onChangeUser}
             onBlur={handleBlur} 
             className={touched.email && errors.email ? "has-error"
               : null}
@@ -97,8 +117,9 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
-            value = {values.password}
-            onChange = {handleChange}
+            onInput = {handleChange}
+            value = {user.password}
+            onChange = {onChangeUser}
             onBlur = {handleBlur}
             className={touched.password && errors.password ? "has-error" : null } 
           />
@@ -122,7 +143,7 @@ export default function SignIn() {
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item>
+            <Grid item xs>
               <Link href="./Register" variant="body2">
                 Don't have an account? Sign Up
               </Link>
