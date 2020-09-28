@@ -1,30 +1,17 @@
 
-import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import Alert from '@material-ui/lab/Alert';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    '& > * + *': {
-      marginTop: theme.spacing(1),
-    },
-  },
-}));
-
+import React from "react"
 const Error = ({ touched, message}) => {
-    const classes = useStyles();
 
     if(!touched){
-        return <div className={classes.root}>&nbsp;
+        return <div >&nbsp;
         </div>;
     }
     if(message){
-        return <div className={classes.root} ><Alert variant="filled"  severity="error">
+        return <div><span style={{ color: 'red' }}>
         {message}
-      </Alert></div>;
+      </span></div>;
     }
-    return <div color="green">&nbsp;</div>;
+    return <div >&nbsp;</div>;
 }
 
 export default Error;
