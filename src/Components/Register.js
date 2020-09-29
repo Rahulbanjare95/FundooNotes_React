@@ -18,6 +18,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
 import Axios from 'axios';
+import services from "../services/userservices";
 
 const useStyles = makeStyles((theme) => ({
   top: {
@@ -44,9 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 const validationSchema = Yup.object().shape({
-  firstName: Yup.string().min(3, "Minimum 3 Characters!").required("Required!"),
-  lastName: Yup.string().min(2, "Minimum 2 Characters!").required("Required!"),
-  email: Yup.string().email().required("Required!"),
+  firstName: Yup.string().min(3, "Minimum 3 Characters!").required("Required!").matches(/^[A-Za-z]+$/, "Only Alphabets allowed"),
+  lastName: Yup.string().min(2, "Minimum 2 Characters!").required("Required!").matches(/^[A-Za-z]+$/, "Only Alphabets allowed"),
+  email: Yup.string().email().required("Required!").matches(/\S+@\S+\.\S+$/, "Enter valid email"),
   password: Yup.string()
     .min(4, "Must have minimum  4 Charachters")
     .required("Required !"),
@@ -75,13 +76,15 @@ export default function SignUp() {
 
   const onSubmitNewUser = (e) => {
     e.preventDefault();
-    Axios.post('http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp', user)
-      .then((user) => {
-        console.log(user);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    services.register(user);
+
+    // Axios.post('http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp', user)
+    //   .then((user) => {
+    //     console.log(user);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
   }
 
 
@@ -103,7 +106,7 @@ export default function SignUp() {
 
   return (
     <Formik initialValues={{ firstName: "", lastName: "", email: "", password: "", confirm: "" }} validationSchema={validationSchema} >
-      {({ values, errors, touched, handleChange, handleBlur,}) => (
+      {({ values, errors, touched, handleChange, handleBlur, }) => (
         <Container className={classes.top} component="main" maxWidth="sm">
           <Card className={classes.pepper} elevation="10">
             <CardContent>

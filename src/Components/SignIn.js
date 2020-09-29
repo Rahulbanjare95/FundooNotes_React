@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
-import Axios from 'axios';
+import services from "../services/userservices";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,14 +61,7 @@ export default function SignIn() {
   
   const onSubmitSignIN = (e)=>{
     e.preventDefault();
-    // console.log(user);
-    Axios.post('http://fundoonotes.incubation.bridgelabz.com/api/user/login', user)
-    .then((user)=>{
-      console.log(user);
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    services.signin(user);
   }
 
                                      
