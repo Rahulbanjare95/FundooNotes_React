@@ -1,18 +1,25 @@
-import {ApiCall} from "./apicall";
+import {ApiCall} from "./ApiCalls";
+
+const URL = "http://fundoonotes.incubation.bridgelabz.com/api/";
+
+
 
 class UserService {
+    state ={};
+    
+    
     signin(data){
-        return ApiCall(data, `http://fundoonotes.incubation.bridgelabz.com/api/user/login`,"POST");
+        return ApiCall(data, `${URL}user/login`,"POST");
     }
     register(data){
-        return ApiCall(data, `http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp`, "POST");
+        return ApiCall(data, `${URL}user/userSignUp`, "POST");
     }
     forgetPassword(data){
-        return ApiCall(data, `http://fundoonotes.incubation.bridgelabz.com/api/user/reset`,"POST");
+        return ApiCall (data, `${URL}/user/reset`,"POST");
     }
-    // resetPassword(url,data){
-    //     return ApiCall(data, `http://fundoonotes.incubation.bridgelabz.com/api/user/reset-password?access_token=${url.split("/")[2]}`,"POST");
-    // }
+    resetPassword(location,data){
+        return ApiCall(data, `${URL}/user/reset-password?access_token=${location.split("/")[2]}`,"POST");
+    }
 }
 
 export default new UserService();
