@@ -65,20 +65,29 @@ describe('ResetPassword test suite', ()=>{
         expect(capture).toBeInTheDocument();
 
     });
-    test("Find out the Forget  ",()=>{
+    it('should not mount in a full DOM', function() {
+        expect(mount(<ResetPassword />).find('.form').length).toBe(0);
+      });
+    //   it('should mount in a full DOM', function() {
+    //     expect(shallow(<ResetPassword />).matchesElement(<Button 
+    //       > Reset Password
+    //     </Button>)).to.equal(true)
+    //   });  
+});
+
+describe('ForgetPassword test suite', ()=>{
+    test("Find out the Reset Password  ",()=>{
         const {getByText} = render(<ForgetPassword />);
         const capture = getByText("submit");
         expect(capture).toBeInTheDocument();
 
     });
 
+    test("Find out the Reset Password  ",()=>{
+        const {getByText} = render(<ForgetPassword />);
+        const capture = getByText("Back to SignIn");
+        expect(capture).toBeInTheDocument();
 
-    it('should not mount in a full DOM', function() {
-        expect(mount(<ResetPassword />).find('.form').length).toBe(0);
-      });
-      it('should mount in a full DOM', function() {
-        expect(shallow(<ResetPassword />).matchesElement(<Button 
-          > Reset Password
-        </Button>)).to.equal(true)
-      });  
+    });
+
 });
