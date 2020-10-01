@@ -2,9 +2,13 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Register from '../Components/Register';
 import SignIn from '../Components/SignIn';
+import ResetPassword from '../Components/ResetPassword';
+import ForgetPassword from '../Components/ForgetPassword'
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 // setup file
-import { configure, shallow } from 'enzyme';
+import { configure, shallow,mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
@@ -51,4 +55,30 @@ describe("SignIn Page text testing",()=>{
 
     });
 
+});
+
+
+describe('ResetPassword test suite', ()=>{
+    test("Find out the Reset Password  ",()=>{
+        const {getByText} = render(<ResetPassword />);
+        const capture = getByText("Confirm");
+        expect(capture).toBeInTheDocument();
+
+    });
+    test("Find out the Forget  ",()=>{
+        const {getByText} = render(<ForgetPassword />);
+        const capture = getByText("submit");
+        expect(capture).toBeInTheDocument();
+
+    });
+
+
+    it('should not mount in a full DOM', function() {
+        expect(mount(<ResetPassword />).find('.form').length).toBe(0);
+      });
+      it('should mount in a full DOM', function() {
+        expect(shallow(<ResetPassword />).matchesElement(<Button 
+          > Reset Password
+        </Button>)).to.equal(true)
+      });  
 });
