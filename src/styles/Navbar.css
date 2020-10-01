@@ -1,0 +1,15 @@
+.custom-nav-bar{
+    background-color: wheat;
+    display: flex;
+}
+.custom-image{
+    width: 60px;
+    height: 60px;
+    padding-left:15px;
+    padding-right: 12px;
+}
+
+.custom-brand{
+    font-size: 26px;
+    font-weight: 600px;
+}
