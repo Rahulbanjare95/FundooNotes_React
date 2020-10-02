@@ -6,10 +6,12 @@ import ResetPassword from '../Components/ResetPassword';
 import ForgetPassword from '../Components/ForgetPassword'
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import Dashboard from '../Components/Dashboard'
 
 // setup file
 import { configure, shallow,mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
 
 configure({ adapter: new Adapter() });
 
@@ -68,11 +70,11 @@ describe('ResetPassword test suite', ()=>{
     it('should not mount in a full DOM', function() {
         expect(mount(<ResetPassword />).find('.form').length).toBe(0);
       });
-    //   it('should mount in a full DOM', function() {
-    //     expect(shallow(<ResetPassword />).matchesElement(<Button 
-    //       > Reset Password
-    //     </Button>)).to.equal(true)
-    //   });  
+      it('should mount in a full DOM', function() {
+        expect(mount(<ResetPassword />).matchesElement(<Button 
+          > Reset Password
+        </Button>)).to.Equal(true)
+      });  
 });
 
 describe('ForgetPassword test suite', ()=>{
@@ -91,3 +93,9 @@ describe('ForgetPassword test suite', ()=>{
     });
 
 });
+
+describe('Dashboard test suite', ()=>{
+    const {getByText} = render(<Dashboard />);
+    const capture = getByText("FundooNotes");
+    expect(capture).toBeInTheDocument();
+})
