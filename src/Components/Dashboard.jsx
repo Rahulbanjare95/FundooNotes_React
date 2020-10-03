@@ -6,8 +6,6 @@ import "../styles/Navbar.css";
 import { BsArrowClockwise, BsFillGearFill, BsPerson } from "react-icons/bs";
 import DrawerToggleButton from "./DrawerToggleButton";
 import SideBar from "./SideBar";
-import BackDrop from "./Backdrop";
-import sideBar from "./SideBar";
 import Backdrop from "./Backdrop";
 
 class Dashboard extends Component {
@@ -20,18 +18,21 @@ class Dashboard extends Component {
             return{sideDrawerOpen: !previousState.sideDrawerOpen};
         });
     };
+    backdropClickHandler = () =>{
+        this.setState({sideDrawerOpen:false});
+    }
     render() {
         let sideDrawer;
         let backDrop;
         if(this.state.sideDrawerOpen){
             sideDrawer = <SideBar/>;
-            backDrop = <Backdrop />;
+            backDrop = <Backdrop  click = {this.backdropClickHandler}/>;
         }
         return (
             <>
                 <Navbar variant="default" className="custom-nav-bar" >
                     <div>
-                    <DrawerToggleButton click={this.drawerToggleClickHandler}/>
+                    <DrawerToggleButton  handleToggleClick={this.drawerToggleClickHandler}/>
                     {sideDrawer}
                     {backDrop}
                     </div>
