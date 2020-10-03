@@ -1,0 +1,29 @@
+.side-drawer{
+    height: 100%;
+    background: white;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.0);
+    position: fixed;
+    top: 105px;
+    left: 0;
+    width: 60%;
+    max-width: 300px;
+    z-index: 200;
+}
+
+.side-drawer ul{
+    height: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.side-drawer li{
+    margin-left: 0.5rem 0;
+}
+.side-drawer a{
+    text-decoration: none;
+    color: grey;
+    font-size: 1.5rem;
+}
+
