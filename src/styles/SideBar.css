@@ -5,25 +5,55 @@
     position: fixed;
     top: 105px;
     left: 0;
+    margin-left: none;
     width: 60%;
     max-width: 300px;
     z-index: 200;
 }
-
 .side-drawer ul{
+    padding: 0;
+    margin: 0;
     height: 100%;
     list-style: none;
     display: flex;
     flex-direction: column;
-    
+    top: 0;
+    margin-left: none;
+    left: 0;
+}
+.side-drawer:hover{
+    width: 16rem;
+}
+
+.side-drawer:hover .side-drawer-text{
+    display: block;
 }
 
 .side-drawer li{
     margin-left: 0.5rem 0;
+    display: flex;
+    align-items: center;
+   margin-bottom: 1rem;
+}
+
+.side-drawer a:hover{
+    color: #FAD966;
 }
 .side-drawer a{
     text-decoration: none;
-    color: grey;
+    color:#000000;
+    font-size: 1rem;
+    display: flex;
+}
+.icons{
+    min-width: 2rem;
+    margin-left: 1rem;
     font-size: 1.5rem;
+    display: flex;
+    
+}
+.side-drawer-text{
+    display: none;
+    margin-left: 1rem;
 }
 
