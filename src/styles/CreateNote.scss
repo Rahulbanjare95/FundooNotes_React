@@ -41,3 +41,24 @@ button:hover{
     background-color: whitesmoke;
 }
 
+.iconsOption{
+    display: flex;
+    align-items: center;
+    left: 0;
+}
+.buttons{
+    left: 0;
+    margin-left: none;
+    font-size: 16px;
+    border: solid;
+    border-radius: 50%;
+    border-color: white;
+    background-color: transparent;
+    margin-right: 1rem;
+}
+.closeButton{
+    border: none;
+    border-color: white;
+    background-color: transparent;
+    margin-left: 12rem;
+}
