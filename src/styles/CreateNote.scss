@@ -27,7 +27,17 @@
     font-weight: 700;
     font-size: 18px;
 }
-
-
-
 }
+.pinIcon{
+ position:absolute;
+ top: 5px;
+ left: 560px;
+ border: solid;
+ border-radius: 50%;
+ border-color: white;
+ background-color: transparent;
+}
+button:hover{
+    background-color: whitesmoke;
+}
+
