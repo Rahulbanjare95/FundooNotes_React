@@ -1,8 +1,33 @@
 .createNotes{
-    display: flex;
-    margin-left: 310px;
+    top: 3rem;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:white;
+    border-radius: 8px;
+    box-shadow:2px 2px 10px 2px gray;
+    z-index: 10;
+    
 }
-.inputs{
-    margin: none;
-    padding:none;
+
+.title{
+  width: 100%;
+  display: block;
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: transparent;
+  resize: none;
+  &::placeholder {
+    color: gray;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
+
 }
