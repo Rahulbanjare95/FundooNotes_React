@@ -1,33 +1,30 @@
 import React from 'react';
 import "../styles/SideBar.css";
-import { BiBulb } from 'react-icons/bi';
-import { BsPencil, BsFillBellFill, BsFillArchiveFill, BsFillTrashFill } from 'react-icons/bs';
+import { BiBulb, BiArchiveIn ,BiTrashAlt} from 'react-icons/bi';
+import { BsPencil,  BsBell} from 'react-icons/bs';
+
 
 const sideBar = props => {
-    let drawerClasses = 'side-drawer';
-    if(props.show){
-        drawerClasses = 'side-drawer open';
-    }
 
     return (
-        <nav className={drawerClasses}>
+        <nav className="side-drawer">
             <ul className="side-drawer-ul">
                 <li className="side-drawer-item">
                     <a href="#" className="side-drawer-link">
                         <BiBulb className="icons"></BiBulb>
                         <span className="side-drawer-text">Notes</span></a></li>
-                <li><a href="#">
+                <li><a href="#" className="side-drawer-link">
                     <BsPencil className="icons"></BsPencil>
                     <span className="side-drawer-text">EditLabels</span> </a></li>
                 <li>
-                    <a href="#">
-                        <BsFillBellFill className="icons"></BsFillBellFill>
+                    <a href="#" className="side-drawer-link">
+                        <BsBell className="icons"></BsBell>
                         <span className="side-drawer-text"> Reminders  </span></a></li>
                 <li>
-                    <a href="#">
-                        <BsFillArchiveFill className="icons"></BsFillArchiveFill>
+                    <a href="#" className="side-drawer-link">
+                        <BiArchiveIn className="icons"></BiArchiveIn>
                         <span className="side-drawer-text">Archive </span></a></li>
-                <li><a href="#"><BsFillTrashFill className="icons"></BsFillTrashFill>
+                <li><a href="#" className="side-drawer-link"><BiTrashAlt className="icons"></BiTrashAlt>
                     <span className="side-drawer-text">Trash </span></a></li>
 
             </ul>
