@@ -15,6 +15,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
 import service from "../services/userservices";
+import Snackbar from '@material-ui/core/Snackbar';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -51,17 +53,35 @@ const validationSchema  = Yup.object().shape({
   
 });
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [user, setUser] = useState({email : "",password : "" });
 
   const onChangeUser = (e) =>{
     setUser({...user, [e.target.name]: e.target.value})
   }
-  
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   const onSubmitSignIN = (e)=>{
     e.preventDefault();
-    service.signin(user);
+    service.signin(user).then((user)=>{
+      if (user.status === 200) {
+        localStorage.setItem("firstName",user.data.firstName);
+        localStorage.setItem("lastName",user.data.lastName);
+        localStorage.setItem("token", user.data.id);
+        localStorage.setItem("email", user.data.email);       
+        alert('Login Successfully');
+        props.history.push('/Dashboard');
+      }
+    }).catch((err)=>{
+      alert('Invalid Credentials');
+    });
   }
 
                                      
@@ -69,14 +89,14 @@ export default function SignIn() {
     <Formik initialValues={{email: "", password: ""}} validationSchema={validationSchema}>
       {({ values, errors, touched, handleChange, handleBlur}) => (
         <Container component="main" maxWidth="xs">
-        <Card className={classes.paper}  elevation="6">
+        <Card className={classes.paper}  elevation={6}>
       <CardContent>
       <CssBaseline />
       <div className={classes.paper}>
       <Typography className={classes.head} component="h1" variant="h5">
           Fundoo
         </Typography>
-        <Typography className={classes.Signn} component="p" variant="p">
+        <Typography className={classes.Signn} component="h6" variant="h6">
           Sign in
         </Typography>
         
