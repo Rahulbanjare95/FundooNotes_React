@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Spinner from 'react-bootstrap/Spinner'
 import "../styles/CreateNote.scss"
 export default class GetNotes extends Component {
     state = {
@@ -24,13 +25,14 @@ export default class GetNotes extends Component {
                 {this.state.note ? (
                     <div>
                         {this.state.note.map((data, index) =>{
-                            return <div ><div className='note'><h1> {data.title}</h1>
-                                                                <p>{data.description}</p></div> </div>
+                            return  <div className='note'><h1> {data.title}</h1>
+                                                                <p>{data.description}</p>
+                                                                </div>
                             
                         })}
                     </div>)
                     :
-                    (<div>No notes found</div>)
+                    (<div className='noteList'> <Spinner animation="border" variant="warning" /> </div>)
                 }
             </div>
         )
