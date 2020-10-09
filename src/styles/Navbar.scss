@@ -1,0 +1,51 @@
+
+.custom-nav-bar{
+    display: inline;
+    background-color: white;
+    display: flex;
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2) !important;
+}
+.custom-image{
+   
+    width: 60px;
+    height: 40px;
+    margin-left: 0.5rem;
+    padding-left:15px;
+    padding-right: 12px;
+}
+
+.custom-brand{
+ 
+    font-size: 26px;
+    font-weight: 600px;
+    padding-right:140px;
+}
+.searchBar{
+  
+   
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 140px;
+    padding-right:140px;
+}
+.btn-circle.btn-sm { 
+    width: 45px; 
+    height: 45px; 
+    padding: 6px 0px; 
+    border-radius: 15px;  
+    text-align: center; 
+} 
+.refresh{
+    display:flex;
+    padding-left: 190px;
+    color:black;
+}
+.settings{
+    display: flex;
+    padding-left: 0px;
+
+}
+.profile{
+    display: flex;
+    padding-left: 20px;
+}
