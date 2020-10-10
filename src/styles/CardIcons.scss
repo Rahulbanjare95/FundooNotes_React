@@ -1,0 +1,20 @@
+.iconsDiv{
+    display: inline-block;
+    padding: 0;
+}
+
+.icons{
+    color: grey;
+    display: inline-block;
+    justify-items: initial;
+    left: 0;
+    margin-left:1px;
+    font-size: 12px;
+    border: solid;
+    border-radius: 50%;
+    border-color: white;
+    background-color: transparent;   
+}
+.icons:hover{
+    color: black;
+}
