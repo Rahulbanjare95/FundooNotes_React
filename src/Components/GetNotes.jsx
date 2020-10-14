@@ -68,8 +68,9 @@ export default class GetNotes extends Component {
                             return (
                                 <>
 
-                            <div className='note' onClick = {() => this.setState({showModal:true, id:data.id, title:data.title, description:data.description})}>
-                                <h1>{data.title}</h1>
+                            <div className='note' >
+                                <span  onClick = {() => this.setState({showModal:true, id:data.id, title:data.title, description:data.description})}> <h1>{data.title}</h1> </span>
+                                
                                     <p>{data.description}</p>
                                     <div className='iconsDiv'>
                                         <button className='iconsCard'><MdAddAlert ></MdAddAlert></button>
@@ -80,7 +81,7 @@ export default class GetNotes extends Component {
                                         <button className='iconsCard' onClick={() => this.deleteNote({ id })}><BiTrashAlt></BiTrashAlt></button>
                                     </div>
                                 </div>
-                                <div><UpdateCard id={id} title={this.state.title} description={this.statedescription} show={this.state.showModal} close={this.closeModal } /></div>
+                                <div><UpdateCard id={id} title={this.state.title} description={this.state.description} show={this.state.showModal} close={this.closeModal } /></div>
                                 </>
                                 )
                         })}
