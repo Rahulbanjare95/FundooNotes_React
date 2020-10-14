@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Modal, Button} from 'react-bootstrap';
 import NotesServices from '../services/NotesServices'
 
+
 class UpdateCard extends Component {
   constructor(props){
     super(props);
@@ -10,6 +11,9 @@ class UpdateCard extends Component {
       title: '',
       description:'',
     }
+    this.titleHandler = this.titleHandler.bind(this);
+    this.descriptionHandler = this.descriptionHandler.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
   componentWillReceiveProps(nextProps){
     this.setState({
@@ -26,30 +30,29 @@ class UpdateCard extends Component {
     this.setState({description: e.target.value});
   }
   
-  handleSave(e){
-    var updateNote = { noteIdList: [this.props.id], title:this.state.title, description:this.state.description};
+  handleSave(){
+    var updateNote = { noteId:this.props.id, title:this.state.title, description:this.state.description};
     NotesServices.updateNote(updateNote);
-    console.log('hi',updateNote);
   }
   render() {
     return (
       <div>
-        <form onSubmit={() => this.handleSave}>
+        
         <Modal show={this.props.show} onHide={this.props.close}>
-        <Modal.Body> <span> <input value={this.state.title} onChange={(e) => this.titleHandler(e)}/></span>
+        <Modal.Body > <h4> <input value={this.state.title} onChange={(e) => this.titleHandler(e)}/></h4>
         <br/>
-        <span> <input value={this.state.description} onChange={ (e) => this.descriptionHandler(e)}/></span>
+        <h6> <input value={this.state.description} onChange={ (e) => this.descriptionHandler(e)}/></h6>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.props.close}>
             Close
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={this.handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-      </form>
+    
       </div>
     )
   }

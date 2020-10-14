@@ -15,7 +15,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import Error from "./Error";
 import service from "../services/userservices";
-import Snackbar from '@material-ui/core/Snackbar';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,19 +55,11 @@ const validationSchema  = Yup.object().shape({
 
 export default function SignIn(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const [user, setUser] = useState({email : "",password : "" });
 
   const onChangeUser = (e) =>{
     setUser({...user, [e.target.name]: e.target.value})
   }
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
   const onSubmitSignIN = (e)=>{
     e.preventDefault();
     service.signin(user).then((user)=>{

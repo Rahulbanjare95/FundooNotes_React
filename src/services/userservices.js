@@ -2,12 +2,7 @@ import {ApiCall} from "./ApiCalls";
 
 const URL = "http://fundoonotes.incubation.bridgelabz.com/api/";
 
-
-
-class UserService {
-    state ={};
-    
-    
+class UserService {   
     signin(data){
         return ApiCall(data, `${URL}user/login`,"POST");
     }
@@ -20,6 +15,9 @@ class UserService {
     resetPassword(location,data){
         return ApiCall(data, `${URL}/user/reset-password?access_token=${location.split("/")[2]}`,"POST");
     }
-}
+    logout(location){
+        return ApiCall(location,`${URL}/user/reset-password?access_token=${location}`,"POST" );
 
+    }
+}
 export default new UserService();

@@ -1,16 +1,22 @@
 import React from "react";
-import { Navbar, Button, Form, FormControl, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Navbar, Button, Form, FormControl, Dropdown,} from 'react-bootstrap';
 import { Component } from 'react';
-import download from '../styles/download.jpg';
-import "../styles/Navbar.css";
+import download from '../Assets/download.jpg';
+import "../styles/Navbar.scss";
 import { BsArrowClockwise, BsFillGearFill, BsPerson } from "react-icons/bs";
 import DrawerToggleButton from "./DrawerToggleButton";
 import SideBar from "./SideBar";
 import Backdrop from "./Backdrop";
+import CreateNotes from "./CreateNotes";
+import GetNotes from "./GetNotes";
+import Profile from './Profile';
 
 class Dashboard extends Component {
     state = {
-        sideDrawerOpen:false
+        sideDrawerOpen:false,
+        onCLickCall:false,
+        openProfile:false,
+
     };
 
     drawerToggleClickHandler = () =>{
@@ -21,7 +27,13 @@ class Dashboard extends Component {
     backdropClickHandler = () =>{
         this.setState({sideDrawerOpen:false});
     }
-    render() {
+    showProfile = () =>{
+        this.setState({openProfile:true});
+
+    }
+
+    render() {    
+
         let sideDrawer;
         let backDrop;
         if(this.state.sideDrawerOpen){
@@ -46,13 +58,13 @@ class Dashboard extends Component {
                             <FormControl type="text" placeholder="Search" className="searchBar" />
                             <div className='refresh'>
                                 <Button className='btn-light btn-circle btn-sm'>
-                                    <BsArrowClockwise size='27px'> </BsArrowClockwise>
+                                    <BsArrowClockwise size='20px'> </BsArrowClockwise>
                                 </Button>
                             </div>
                             <div className='settings'>
                                 <Dropdown>
                                     <Dropdown.Toggle className='btn-light btn-circle btn-sm' >
-                                    <BsFillGearFill size='27px' ></BsFillGearFill>
+                                    <BsFillGearFill size='20px' ></BsFillGearFill>
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item href="#/action-1">Send feedback</Dropdown.Item>
@@ -63,11 +75,17 @@ class Dashboard extends Component {
                             </div>
                             <div className='profile'>
                                 <Button className='btn-light btn-circle btn-sm'>
-                                    <BsPerson size='sm'></BsPerson>
+                                    <BsPerson size='20px' onClick={this.showProfile?<Profile/>: null}> </BsPerson>    
                                 </Button> </div>
                         </Form>
                     </div>
                 </Navbar>
+                <div className='contents'>
+                    <CreateNotes/>
+                </div>
+                <div className='contents'>
+                    <GetNotes />
+                </div>
                
             </>
         )

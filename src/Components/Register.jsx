@@ -48,7 +48,7 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().min(2, "Minimum 2 Characters!").required("Required!").matches(/^[A-Za-z]+$/, "Only Alphabets allowed"),
   email: Yup.string().email().required("Required!").matches(/\S+@\S+\.\S+$/, "Enter valid email"),
   password: Yup.string()
-    .min(4, "Must have minimum  4 Charachters")
+    .min(6, "Must have minimum  6 Charachters")
     .required("Required !"),
   confirm: Yup.string()
     .oneOf([Yup.ref('newPassword'), null], 'Passwords must match').required('Required!')
@@ -76,14 +76,6 @@ export default function SignUp() {
   const onSubmitNewUser = (e) => {
     e.preventDefault();
     service.register(user);
-
-    // Axios.post('http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp', user)
-    //   .then((user) => {
-    //     console.log(user);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
   }
 
   const handleChangePassword = (prop) => (event) => {
@@ -181,7 +173,7 @@ export default function SignUp() {
                         type="password"
                         id="password"
                         name="password"
-                        helperText={"Use 8 or more characters with a mix of letters, numbers & symbols"}
+                        helperText={"A mix of letters, numbers & symbols needed"}
                         onInput={handleChange}
                         onChange={onChangeUser}
                         value={user.password}

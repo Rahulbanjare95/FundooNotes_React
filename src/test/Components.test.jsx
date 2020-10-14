@@ -4,11 +4,8 @@ import Register from '../Components/Register';
 import SignIn from '../Components/SignIn';
 import ResetPassword from '../Components/ResetPassword';
 import ForgetPassword from '../Components/ForgetPassword'
-import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Dashboard from '../Components/Dashboard'
-
-// setup file
 import { configure, shallow,mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 

@@ -1,11 +1,12 @@
 .createNotes{
     top: 3rem;
-    padding-bottom: 100px;
+    left: 3rem;
+    bottom: 1px;
     position: relative;
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    padding:10px;
     background-color:white;
     border-radius: 8px;
     box-shadow:2px 2px 10px 2px gray;
@@ -25,7 +26,7 @@
   display: block;
   border: 0;
   outline: 0;
-  margin: 0;
+  margin-bottom: 0px;
   padding: 0;
   font-size: 16px;
   background-color: transparent;
@@ -63,9 +64,7 @@ button:hover{
     border-radius: 50%;
     border-color: white;
     background-color: transparent;
-    margin-right: 1rem;
-    z-index: 10;
-   
+    margin-right: 1rem;   
 }
 
 .closeButton{
@@ -85,30 +84,30 @@ button:hover{
   }
   .noteList{
       margin-left:300px ;
-      margin-top:50px;
+      margin-top:80px;
   }
+
   .note {
+   
     background: white;
     color: var(--main-text-color);
     border-radius: 7px;
-    /* box-shadow: 0 2px 5px #ccc; */
+    box-shadow: 0 2px 5px #ccc; 
     padding: 20px;
     width: 240px;
-    margin: 16px;
+    margin: 10px;
     float: left;
-    box-shadow:2px 2px 10px 2px gray;
+    // box-shadow:2px 2px 10px 2px gray;
   }
   .note h1 {
-    font-size: 1.1em;
+    font-size: 1.4em;
     text-size-adjust: inherit;
+    color: gray;
     margin-bottom: 6px;
   }
   .note p {
-    font-size: 1.1em;
+    font-size: 0.8em;
     margin-bottom: 10px;
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-
-  
-  

@@ -7,7 +7,7 @@ import { BiImageAlt } from 'react-icons/bi'
 import "../styles/CreateNote.scss"
 import NotesServices from "../services/NotesServices"
 
-export default function CreateNotes() {
+export default function EditNotes() {
     const [titleFieldVisible, setTitleFieldVisible] = useState(false);
     const [note, setNote] = useState({ title: "", description: "" });
     const onChangeUser = (e) => {
@@ -22,7 +22,6 @@ export default function CreateNotes() {
         setTitleFieldVisible(false)
     }
     const onSubmitSaveNote = (e) => {
-        console.log(note);
         NotesServices.createNew(note).then((user) => {
          alert("Note Added Successfully")   
         }
