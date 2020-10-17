@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react'
 import Spinner from 'react-bootstrap/Spinner'
 import { VscSymbolColor } from 'react-icons/vsc'
 import { MdAddAlert } from 'react-icons/md';
-import { RiUserAddFill, RiInboxArchiveLine } from 'react-icons/ri';
+import { RiUserAddFill, RiInboxUnarchiveLine } from 'react-icons/ri';
 import { BiImageAlt } from 'react-icons/bi'
 import '../styles/CardIcons.scss'
 import "../styles/CreateNote.scss"
@@ -30,6 +30,7 @@ export default class Archive extends Component {
     unArchiveNote(data) {
         var noteArchived = { noteIdList:[data.id], isArchived:false};
         notesServices.archiveNote(noteArchived);
+        this.componentDidMount();
     }
     
     render() {
@@ -54,7 +55,7 @@ export default class Archive extends Component {
                                         <button className='iconsCard'><RiUserAddFill></RiUserAddFill></button>
                                         <button className='iconsCard'><VscSymbolColor></VscSymbolColor></button>
                                         <button className='iconsCard'><BiImageAlt></BiImageAlt></button>
-                                        <button className='iconsCard' onClick={() => this.unArchiveNote({id})}><RiInboxArchiveLine></RiInboxArchiveLine></button>
+                                        <button className='iconsCard' onClick={() => this.unArchiveNote({id})}><RiInboxUnarchiveLine></RiInboxUnarchiveLine></button>
                                         
                                     </div>
                                 </div>
