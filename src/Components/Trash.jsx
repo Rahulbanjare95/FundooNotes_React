@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react'
 import Spinner from 'react-bootstrap/Spinner'
-import { FaRegTrashAlt } from 'react-icons/fa'
+import { FaRegTrashAlt, FaTrashRestore} from 'react-icons/fa'
 import '../styles/CardIcons.scss'
 import "../styles/CreateNote.scss"
 import notesServices from '../services/NotesServices'
@@ -23,12 +23,19 @@ export default class Archive extends Component {
         }).catch(error => console.log(error))
             ;
     }
+
     deleteForever(data) {
-        notesServices.deleteForever(data);
-
+        var noteData = { noteIdList: [data.id]};
+        notesServices.deleteForever(noteData);
+        this.componentDidMount();
     }
+    restoreNote(data){
+        var restore = {noteIdList: [data.id], isDeleted: false }
+        notesServices.deleteNote(restore);
+        this.componentDidMount();
+    } 
 
-    render() {``
+    render() {
 
         return (
             <div className='noteList'>
@@ -44,9 +51,8 @@ export default class Archive extends Component {
                                         <h1>{data.title}</h1>
                                         <p>{data.description}</p>
                                         <div className='iconsDiv'>
-
-                                            <button className='iconsCard' onClick={() => this.deleteForever({ id })}><FaRegTrashAlt></FaRegTrashAlt></button>
-
+                                        <button className='iconsCard' onClick={() => this.restoreNote({ id })}><FaTrashRestore></FaTrashRestore></button>
+                                        <button className='iconsCard' onClick={() => this.deleteForever({ id })}><FaRegTrashAlt></FaRegTrashAlt></button>
                                         </div>
                                     </div>
                                 </>
