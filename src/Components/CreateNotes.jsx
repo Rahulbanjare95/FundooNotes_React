@@ -6,8 +6,9 @@ import { RiUserAddFill, RiInboxArchiveLine } from 'react-icons/ri'
 import { BiImageAlt } from 'react-icons/bi'
 import "../styles/CreateNote.scss"
 import NotesServices from "../services/NotesServices"
+import GetNotes from './GetNotes';
 
-export default function CreateNotes() {
+export default function EditNotes() {
     const [titleFieldVisible, setTitleFieldVisible] = useState(false);
     const [note, setNote] = useState({ title: "", description: "" });
     const onChangeUser = (e) => {
@@ -22,7 +23,6 @@ export default function CreateNotes() {
         setTitleFieldVisible(false)
     }
     const onSubmitSaveNote = (e) => {
-        console.log(note);
         NotesServices.createNew(note).then((user) => {
          alert("Note Added Successfully")   
         }
@@ -39,6 +39,7 @@ export default function CreateNotes() {
     };
 
     return (
+        <>
         <Card className='createNotes'>
             {titleFieldVisible && (
                 <div className="backdrop" onClick={hideTitleField} />
@@ -48,7 +49,7 @@ export default function CreateNotes() {
                 <form onSubmit={onSubmitSaveNote} className='titleField'>
 
                     <div>
-                        {titleFieldVisible && (<input
+                        {titleFieldVisible && (<textarea
                              required
                             className='title'
                             placeholder='Title'
@@ -87,12 +88,16 @@ export default function CreateNotes() {
                             </button>
                             <button className='closeButton' type="submit">Save</button>
                         </div>)} 
-
                     </div>
                 </form>
             </div>
 
         </Card>
-    );
+        <div className='contents'>
+            <GetNotes/>
+        </div>
 
+        </>
+
+    );
 }

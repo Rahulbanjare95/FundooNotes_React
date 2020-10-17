@@ -54,6 +54,7 @@ export default class GetNotes extends Component {
     archiveNote(data) {
         var noteArchived = { noteIdList:[data.id], isArchived:true};
         notesServices.archiveNote(noteArchived);
+        this.componentDidMount();
     }
     
     render() {

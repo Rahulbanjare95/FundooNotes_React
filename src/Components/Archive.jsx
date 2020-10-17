@@ -7,20 +7,25 @@ import { BiImageAlt } from 'react-icons/bi'
 import '../styles/CardIcons.scss'
 import "../styles/CreateNote.scss"
 import notesServices from '../services/NotesServices'
+import { Dashboard } from '@material-ui/icons';
 export default class Archive extends Component {
     state = {
-        note: null,  
+        note: null, 
+        isArchived:false,
+        title:'',
+        description:'', 
     }
 
     async componentDidMount() {
         const token = localStorage.getItem("token");
         const URL = "http://fundoonotes.incubation.bridgelabz.com/api/notes/";
-        const url = `${URL}getTrashNotesList?access_token=${token}`;
+        const url = `${URL}getArchiveNotesList?access_token=${token}`;
         fetch(url).then(response => {
             return response.json();
         }).then(data => {
             this.setState({ note: data.data.data });
-        }).catch(error => console.log(error));
+        }).catch(error => console.log(error))
+        ;
     } 
     unArchiveNote(data) {
         var noteArchived = { noteIdList:[data.id], isArchived:false};
@@ -30,10 +35,13 @@ export default class Archive extends Component {
     render() {
 
         return (
+            <>
+          
             <div className='noteList'>
                 {this.state.note ? (
+                    
                     <div>
-                        {this.state.note.filter((data) => data.isArchived).map((data, index) => {
+                        {this.state.note.map((data, index) => {
                             const id = data.id;
                             console.log('this is id', id);
                             return (
@@ -61,6 +69,7 @@ export default class Archive extends Component {
                     (<div className='noteList'> <Spinner animation="border" variant="warning" /> </div>)
                 }
             </div>
+       </>
         )
     }
 }

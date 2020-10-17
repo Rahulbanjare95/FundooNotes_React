@@ -25,6 +25,19 @@ class NotesServices {
         return ApiCall(data, `${URL}updateNotes?access_token=${token}`, "POST");
 
     }
+
+    deleteForever(data){
+        return ApiCall(data, `${URL}deleteForeverNotes?access_token=${token}`, "POST");
+    }
+
+    geTrashItem() {
+        return axios.get("http://fundoonotes.incubation.bridgelabz.com/api/notes/deleteForeverNotes", {
+            headers: {
+                'Authorization': token
+            }
+        })
+    }
+  
 }
     
     

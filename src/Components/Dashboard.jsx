@@ -17,6 +17,7 @@ class Dashboard extends Component {
         onCLickCall:false,
         openProfile:false,
 
+
     };
 
     drawerToggleClickHandler = () =>{
@@ -45,7 +46,7 @@ class Dashboard extends Component {
                 <Navbar variant="default" className="custom-nav-bar" >
                     <div>
                     <DrawerToggleButton  handleToggleClick={this.drawerToggleClickHandler}/>
-                    {sideDrawer}
+                  
                     {backDrop}
                     </div>
                     <Navbar.Brand><img
@@ -80,12 +81,12 @@ class Dashboard extends Component {
                         </Form>
                     </div>
                 </Navbar>
+                
                 <div className='contents'>
-                    <CreateNotes/>
+                      <SideBar/> 
+
                 </div>
-                <div className='contents'>
-                    <GetNotes />
-                </div>
+                
                
             </>
         )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Register from './Components/Register';
 import './App.css';
 import Routing from './router';
 

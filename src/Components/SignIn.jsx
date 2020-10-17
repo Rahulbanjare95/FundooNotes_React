@@ -69,7 +69,7 @@ export default function SignIn(props) {
         localStorage.setItem("token", user.data.id);
         localStorage.setItem("email", user.data.email);       
         alert('Login Successfully');
-        props.history.push('/Dashboard');
+        props.history.push('/dashboard/notes');
       }
     }).catch((err)=>{
       alert('Invalid Credentials');

@@ -1,8 +1,8 @@
 
 .custom-nav-bar{
-    display: inline;
-    background-color: white;
+    position: relative;
     display: flex;
+    background-color: white;
     box-shadow: 0 2px 4px -1px rgba(0,0,0,0.2) !important;
 }
 .custom-image{
@@ -15,18 +15,18 @@
 }
 
 .custom-brand{
- 
     font-size: 26px;
     font-weight: 600px;
     padding-right:140px;
 }
-.searchBar{
-  
-   
+.searchBar{ 
+    box-sizing: border-box;
+    margin-left: 50px;
+    margin-right: 70px;
     padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 140px;
-    padding-right:140px;
+    padding-left: 50px;
+    padding-right:100px;
 }
 .btn-circle.btn-sm { 
     width: 45px; 
