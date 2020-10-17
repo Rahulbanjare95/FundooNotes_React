@@ -1,0 +1,37 @@
+.form-control{
+    padding-right: 100px !important;
+}
+.form-inline{
+    display: flex;
+    justify-content: flex-start;
+  
+}
+
+.searchBar{
+    position: inherit;
+    display: flex;
+    width: 500px;
+    margin-left: none;   
+    border: none;
+    border-radius: 5px;
+}
+.inputSearchBar{
+    width: 100%;
+    height: 40px;
+    padding:10px;
+    border: none;
+    background-color:#ECECEC;
+    border-radius: 5px;
+}
+
+.searchButton{
+    border: none;
+    background-color:#ECECEC;
+    border-radius: 5px;
+}
+
+input:focus { 
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 2px 2px 10px #719ECE;
+}
