@@ -1,72 +1,67 @@
-.side-drawer{
-    height: 100%;
-    background: white;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0);
-    position:fixed;
-    margin-top: 45px;
-    left: 0;
-    margin-left: none;
-    width: 60%;
-    max-width: 300px;
-    z-index: 200;
+.side-drawer {
+	height: 100%;
+	background: white;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0);
+	position: fixed;
+	margin-top: 5px;
+	left: 0;
+	margin-left: none;
+	width: 60%;
+	max-width: 300px;
+	z-index: 200;
+	ul {
+		padding: 0;
+		margin: 0;
+		height: 100%;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		top: 0.2rem;
+		margin-left: none;
+		left: 0;
+	}
+	&:hover {
+		width: 100%;
+		.side-drawer-text {
+			display: block;
+		}
+	}
+	li {
+		margin-left: 0.5rem 0;
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		font-size: 50px;
+		border-radius: 0px 25px 25px 0px;
+		width: 300px;
+		height: 50px;
+		&:hover {
+			color: #202124;
+			background-color: #feefc3;
+		}
+	}
+	a {
+		text-decoration: none;
+		color: #000000;
+		font-size: 1rem;
+		display: flex;
+	}
 }
-.side-drawer ul{
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    top: 0.2rem;
-    margin-left: none;
-    left: 0;
+.icons {
+	min-width: 2rem;
+	margin-left: 1rem;
+	font-size: 1.5rem;
+	display: flex;
+	&:active {
+		background-color: gold;
+		color: Black;
+		font-weight: bold;
+	}
 }
-.side-drawer:hover{
-    width: 100%;
+.side-drawer-text {
+	display: none;
+	line-height: 20px;
+	font-size: 14px;
+	letter-spacing: 0.25px;
+	margin-left: 1rem;
 }
-
-.side-drawer:hover .side-drawer-text{
-    display: block;
-}
-
-.side-drawer li{
-    margin-left: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    font-size: 50px;
-    border-radius: 0px 25px 25px 0px;
-    width: 300px;
-    height: 50px;
-
-}
-.side-drawer li:hover{
-    color: #202124;
-    background-color:#feefc3;
-}
-
-.side-drawer a{
-    text-decoration: none;
-    color:#000000;
-    font-size: 1rem;
-    display: flex;
-}
-.icons{
-    min-width: 2rem;
-    margin-left: 1rem;
-    font-size: 1.5rem;
-    display: flex;
-}
-.icons:active{
-    background-color: gold;
-   color:Black ;
-   font-weight:bold;
-}
-.side-drawer-text{
-    display: none;
-    line-height: 20px;
-    font-size: 14px;
-    letter-spacing: 0.25px;
-    margin-left: 1rem;
-}
-
