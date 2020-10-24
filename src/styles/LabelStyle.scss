@@ -1,11 +1,14 @@
+
 .createNewLabel{
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 10px;
-
+    margin-bottom: 15px;
+    :focus{
+        outline: none;
+    }
 }
-
 .inputLabel{
   display: flex; 
   flex-direction: row;
@@ -14,6 +17,8 @@
   margin-right: 5px;
   padding-left: 30px;
   justify-content: center;
+  border:none;
+  border-bottom: 1px solid black;
 
 }
 
